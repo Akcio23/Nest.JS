@@ -41,3 +41,34 @@ export interface FindAllParameters {
   title: string;
   status: string;
 }
+
+export class TaskRouteParameters {
+  @IsUUID()
+  id: string;
+}
+
+export class UpdateTaskDto {
+  @IsUUID()
+  @IsOptional()
+  id?: string;
+
+  @IsString()
+  @MinLength(3)
+  @MaxLength(256)
+  @IsOptional()
+  title?: string;
+
+  @IsString()
+  @MinLength(5)
+  @MaxLength(512)
+  @IsOptional()
+  description?: string;
+
+  @IsEnum(TaskStatusEnum)
+  @IsOptional()
+  status?: string;
+
+  @IsDateString()
+  @IsOptional()
+  expirationDate?: Date;
+}
